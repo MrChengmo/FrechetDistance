@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include "algorithm"
+#include "Astar.h"
+#include "Bwlabel.h"
 #define M_PI       3.14159265358979323846
 using namespace std;
 
@@ -11,22 +13,9 @@ public:
 	FrechetDistance3D();
 	~FrechetDistance3D();
 	double frechetDistance(vector<vector<double>> &P1, vector<vector<double>> &P2);
-	bool judgeconnected(vector<vector<double>> frechet_compare_matrix);
-	void compareMatrix(vector<vector<double>> &origin_matrix, vector<vector<double>> &result_matrix, double &range);
-	bool compareArray(vector<double> &array_1, vector<double> &array_2);
-	void calcOnesArray(vector<double> &array_1);
+	void compareMatrix(vector<vector<double>> &origin_matrix, vector<vector<int>> &result_matrix, double &range,int mode);
 	double getRatio(double result, double f_max, double f_min);
-	vector<vector<double>> bwlabel(vector<vector<double>> frechet_compare_mat);
-	vector<vector<int>> number_of_group(vector<vector<double>> frechet_compare_mat , vector<vector<double>> &frechet_group_mat);
-	void group_mat_process(vector<vector<int>> &number_of_group, vector<vector<double>> &frechet_group_mat);
-	void group_row_process(vector<double> &previous_row, vector<double> &curr_row, vector<vector<int>> &number_of_group);
-	vector<int> findNeighbor(size_t index, vector<double> &neighbor_row);
-	void group_num_change(vector<vector<int>>& number_of_group, vector<vector<double>>& frechet_group_mat);
-	void num_trace(vector<vector<int>>& number_of_group, int pre_num,int tar_num);
-	void unique_vector(vector<int> &num_array);
 private:
-	vector<int> ones_array_;
-	bool first_time_;
 	double normcdf(double x)
 	{
 		// constants
